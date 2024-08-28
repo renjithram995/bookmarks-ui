@@ -2,6 +2,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/">GitHub Bookmark</router-link>
+        <div className="user-info">
+          <span>Logged in as: <strong>{{ user?.username }}</strong></span>
+        </div>
         <button
           class="navbar-toggler"
           type="button"
@@ -31,7 +34,7 @@
               <router-link class="nav-link" to="/graph">Graph</router-link>
             </li>
             <li class="nav-item" v-if="isAuthenticated">
-              <a class="nav-link" @click="logout">Logout</a>
+              <router-link class="nav-link" to="/login" @click="logout">Logout</router-link>
             </li>
           </ul>
         </div>
@@ -40,12 +43,13 @@
   </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
 
 export default {
   name: 'NavigationBar',
   computed: {
-    ...mapGetters(['isAuthenticated'])
+    ...mapGetters(['isAuthenticated']),
+    ...mapState(['user'])
   },
   methods: {
     ...mapActions(['logout'])
