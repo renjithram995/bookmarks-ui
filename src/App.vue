@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app-container" class="d-flex flex-column h-100">
     <Navbar />
     <router-view></router-view>
   </div>
@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style>
+<style >
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import './assets/styles.css';
 </style>

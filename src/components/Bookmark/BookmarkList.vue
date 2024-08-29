@@ -37,14 +37,14 @@ export default {
     }
   },
   mounted () {
-    this.getUserRepo()
+    this.getAllBookMarks()
   },
   methods: {
     paginate (value) {
       this.selectedPage = value
     },
-    getUserRepo () {
-      service.fetch('/bookmarks/bookmarks/').then((response) => {
+    getAllBookMarks () {
+      service.fetch('/bookmarks/').then((response) => {
         this.results = response || []
         this.resultsCount = (response || []).length
       }).catch((error) => {
