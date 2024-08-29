@@ -1,15 +1,14 @@
 <template>
     <div class="container">
-      <h2>Bookmarked Repositories</h2>
+      <h2>User Repositories</h2>
       <div class="mt-4">
         <ListComponent v-if="results.length"
         :current-page="selectedPage"
         :results="results"
         :total-count="resultsCount"
         :itemsPerPage="itemsPerPage"
-        type='BookmarkList'
+        type='UserRepoList'
         @input="paginate"
-        @splice="spliceBookMark"
         >
         </ListComponent>
       </div>
@@ -21,7 +20,7 @@ import ListComponent from '@/components/ListComponent'
 import service from '@/services/bookmarkService'
 import { mapState } from 'vuex'
 export default {
-  name: 'BookmarkList',
+  name: 'UserRepoList',
   components: {
     ListComponent
   },
@@ -44,15 +43,13 @@ export default {
       this.selectedPage = value
     },
     getUserRepo () {
-      service.fetch('/bookmarks/bookmarks/').then((response) => {
-        this.results = response || []
-        this.resultsCount = (response || []).length
+      service.fetch(`/github/user/${this.user?.username}?/skip=${this.selectedPage}&top=${this.itemsPerPage}`).then((response) => {
+        debugger
+        this.results = response?.items || []
+        this.resultsCount = (response?.items || []).length
       }).catch((error) => {
         console.error(error)
       })
-    },
-    spliceBookMark (index) {
-      this.results.splice(index, 1)
     }
   }
 }

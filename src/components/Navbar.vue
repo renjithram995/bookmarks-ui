@@ -28,6 +28,9 @@
               <router-link class="nav-link" to="/search">Search</router-link>
             </li>
             <li class="nav-item" v-if="isAuthenticated">
+              <router-link class="nav-link" to="/userrepo">User Repositories</router-link>
+            </li>
+            <li class="nav-item" v-if="isAuthenticated">
               <router-link class="nav-link" to="/bookmarks">Bookmarks</router-link>
             </li>
             <li class="nav-item" v-if="isAuthenticated">

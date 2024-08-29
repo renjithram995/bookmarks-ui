@@ -26,25 +26,26 @@
         <button type="submit" class="btn btn-primary">Search</button>
       </form>
       <div class="mt-4">
-        <PaginateComponent v-if="results.length"
+        <ListComponent v-if="results.length"
         :current-page="selectedPage"
         :results="results"
         :total-count="resultsCount"
         :itemsPerPage="itemsPerPage"
+        type='SearchList'
         @input="paginate"
         >
-        </PaginateComponent>
+        </ListComponent>
       </div>
     </div>
   </template>
 
 <script>
-import PaginateComponent from '@/components/Paginate.vue'
+import ListComponent from '@/components/ListComponent'
 import service from '@/services/bookmarkService'
 export default {
   name: 'SearchComponent',
   components: {
-    PaginateComponent
+    ListComponent
   },
   data () {
     return {
@@ -54,12 +55,11 @@ export default {
       results: [],
       resultsCount: 0,
       selectedPage: 1,
-      itemsPerPage: 5
+      itemsPerPage: 10 // Need to find as the expected viewport
     }
   },
   mounted () {
     this.searchGitHub()
-    console.log(this.results)
   },
   watch: {
     searchType () {
@@ -72,17 +72,14 @@ export default {
       this.searchGitHub()
     },
     searchGitHub () {
-      console.log('searcgit')
+      this.results = []
+      this.resultsCount = 0
       service.fetch(`/github/search/${this.searchType}?/query=${this.searchQuery}&skip=${this.selectedPage}&top=${this.itemsPerPage}`).then((response) => {
         this.results = response?.items || []
         this.resultsCount = response?.count || 0
       }).catch((error) => {
         console.error(error)
       })
-    },
-    async bookmark (item) {
-      // Mock bookmark function
-      console.log('Bookmarked', item)
     }
   }
 }

@@ -8,6 +8,7 @@
 <script>
 import Navbar from './components/Navbar.vue'
 import Utility from '@/utility/index'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 export default {
   components: {
