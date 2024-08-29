@@ -29,8 +29,11 @@ export default {
       validation: ''
     }
   },
+  mounted () {
+    this.logout()
+  },
   methods: {
-    ...mapActions(['login']),
+    ...mapActions(['login', 'logout']),
 
     loginUser () {
       this.validation = ''
