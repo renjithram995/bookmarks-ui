@@ -44,7 +44,6 @@ export default {
     },
     getUserRepo () {
       service.fetch(`/github/user/${this.user?.username}?/skip=${this.selectedPage}&top=${this.itemsPerPage}`).then((response) => {
-        debugger
         this.results = response?.items || []
         this.resultsCount = (response?.items || []).length
       }).catch((error) => {
