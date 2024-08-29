@@ -40,9 +40,9 @@ export default {
         })
     })
   },
-  delete (path, data) {
+  delete (path) {
     return new Promise((resolve, reject) => {
-      Api.server.delete(path, data)
+      Api.server.delete(path)
         .then((result) => {
           if (result.status === 200) {
             resolve(result.data)

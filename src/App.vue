@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app-container" class="d-flex flex-column h-100">
     <Navbar />
     <router-view></router-view>
   </div>
@@ -8,6 +8,7 @@
 <script>
 import Navbar from './components/Navbar.vue'
 import Utility from '@/utility/index'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 export default {
   components: {
@@ -30,7 +31,7 @@ export default {
 }
 </script>
 
-<style>
+<style >
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import './assets/styles.css';
 </style>

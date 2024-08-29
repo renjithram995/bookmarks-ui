@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import BookmarkList from '../components/Bookmark/BookmarkList.vue'
+import UserRepoList from '../components/UserRepo/UserRepoList.vue'
 import BookmarkGraph from '../components/Graph/BookmarkGraph.vue'
 import Search from '../components/GitHub/Search.vue'
 import Utility from '@/utility/index'
@@ -31,6 +32,15 @@ const routes = [
     '/bookmarks',
     name: 'BookmarkList',
     component: BookmarkList,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path:
+    '/userrepo',
+    name: 'UserRepoList',
+    component: UserRepoList,
     meta: {
       requiresAuth: true
     }

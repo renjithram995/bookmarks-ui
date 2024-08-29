@@ -10,7 +10,6 @@ export default createStore({
   },
   mutations: {
     setUser (state, user) {
-      console.log('setUser')
       state.user = user
     },
     setToken (state, token) {
