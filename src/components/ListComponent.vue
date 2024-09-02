@@ -115,7 +115,17 @@ export default {
         this.$emit('input', page)
       }
     },
-    bookmark (repository, idx) {
+    bookmark (selectedRepository, selectedIdx) {
+      debugger
+      let repository = {}
+      let idx = -1
+      if (this.paginatedResults.length === this.results.length) {
+        repository = selectedRepository
+        idx = selectedIdx
+      } else {
+        idx = this.results.findIndex((e) => e.bookMarkId === selectedRepository.bookMarkId)
+        repository = this.results[idx]
+      }
       const { repoName, repoUrl, bookMarkId, bookMarked } = repository
       repository.saveBookMark = true
       const promise = bookMarked ? service.delete(`/bookmarks/bookmark/${bookMarkId}`) : service.post('/bookmarks/bookmark', { repoName, repoUrl })
